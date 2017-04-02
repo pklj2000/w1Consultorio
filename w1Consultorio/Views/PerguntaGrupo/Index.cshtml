@@ -1,0 +1,55 @@
+﻿@model IEnumerable<w1Consultorio.Models.PerguntaGrupo>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+Grupo de Perguntas</h3>
+@if (TempData["mensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["mensagemErro"]
+    </div>
+}
+<br />
+<p>
+    <input type="button" class="btn btn-primary" value="Novo Grupo" 
+        onclick="location.href='@Url.Action("Create", "PerguntaGrupo")'"/>
+</p>
+<table class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sequencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sequencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AtivoDescricao)
+        </td>
+        <td>
+            <div class="btn-group">
+                <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "PerguntaGrupo", new { id = item.CodPerguntaGrupo })'" />
+                <input type="button" class="btn btn-default" value="Detalhe" onclick="location.href='@Url.Action("Details", "PerguntaGrupo", new { id = item.CodPerguntaGrupo })'" />
+                <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "PerguntaGrupo", new { id = item.CodPerguntaGrupo })'" />
+                <input type="button" class="btn btn-default" value="Perguntas" onclick="location.href='@Url.Action("Index", "Pergunta", new { grupoid = item.CodPerguntaGrupo })'" />
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<w1Consultorio.Models.Perfil>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+Perfis</h3>
+<p>
+@using (Html.BeginForm("SetSistema", "Perfil", FormMethod.Get))
+{
+<div class="panel panel-default">
+  <div class="panel-heading">Filtro</div>
+  <div class="panel-body">
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <label>Sistema: </label>@Html.DropDownList("sistemaid", (SelectList)ViewBag.Sistemas, new { @class = "form-control", onchange = "this.form.submit();" })
+            <label>Módulo: </label>@Html.DropDownList("moduloid", (SelectList)ViewBag.Modulos, new { @class = "form-control"})
+            <br />
+            <input type="submit" value="Procurar    " class="btn btn-primary" />
+        </div>
+    </form>
+  </div>
+</div>
+}
+
+@if (TempData["mensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["mensagemErro"]
+    </div>
+}
+<br />
+<p>
+    <input type="button" class="btn btn-primary" value="Novo Perfil" 
+        onclick="location.href='@Url.Action("Create", "Perfil", new {sistemaid = Url.RequestContext.RouteData.Values["sistemaid"], moduloid = Url.RequestContext.RouteData.Values["moduloid"] })'"/>
+</p>
+<table  class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @if (item.Ativo == "1")
+            {@Html.Raw("Sim");
+            }
+            else
+            {@Html.Raw("Não");
+            }
+        </td>
+        <td>
+            <div class="btn-group">
+                <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Perfil", new { sistemaid = item.Modulo.CodSistema, moduloid = item.CodModulo, id = item.CodPerfil })'" />
+                <input type="button" class="btn btn-default" value="Detalhe" onclick="location.href='@Url.Action("Details", "Perfil", new { sistemaid = item.Modulo.CodSistema, moduloid = item.CodModulo, id = item.CodPerfil })'" />
+                <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Perfil", new { sistemaid = item.Modulo.CodSistema, moduloid = item.CodModulo, id = item.CodPerfil })'" />
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

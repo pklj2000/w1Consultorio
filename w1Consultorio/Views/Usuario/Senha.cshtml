@@ -1,0 +1,25 @@
+﻿@model w1Consultorio.Models.Usuario
+
+@{
+    ViewBag.Title = "Senha";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Confirma redefinir a senha para o usuário: <b>@Html.DisplayFor(model => model.Nome)</b></h3><br />
+<h4>Email:<b>@Html.DisplayFor(model => model.Email)</b></h4><br /><br />
+@if (ViewBag.ExibeSenha != null)
+{
+    if (ViewBag.ExibeSenha)
+    {
+        <h4>Senha:<b>@ViewBag.Senha)</b></h4><br /><br />
+    }
+}
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.HiddenFor(model => model.CodUsuario)
+        <input type="submit" value="Redefinir e enviar email" class="btn btn-primary" id="ExecMail" name="ExecMail" />
+        <input type="submit" value="Redefinir" class="btn btn-primary" id="Exec" name="Exec"/>
+        <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Usuario")'" />
+    </p>j
+}

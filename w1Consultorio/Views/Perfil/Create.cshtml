@@ -1,0 +1,101 @@
+﻿@model w1Consultorio.Models.Perfil
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+Perfil</h3>
+@using (Html.BeginForm()) 
+{
+    if (!Html.ViewData.ModelState.IsValid)
+    {
+    <div class="alert alert-danger" role="alert">
+        @Html.ValidationSummary()
+    </div>
+    }
+    
+    <fieldset>
+    @Html.HiddenFor(model => model.CodModulo)
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.Descricao)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Descricao)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label"> 
+                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(model => model.Ativo)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("Ativo", (SelectList)ViewBag.AtivoLista, new { @class = "form-control" })
+                    </div>  
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Transações</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <select multiple class="form-control" id="transacaoDisponivel" name="transacaoDisponivel">
+                                @foreach (var item in ViewBag.Transacoes)
+                                {
+                                    if (!item.Assigned)
+                                    {
+                                    <option value=@item.CodTransacao>@item.Descricao</option>
+                                    }
+                                }
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-default" onclick="adicionarItem(transacaoDisponivel, transacaoAssociado)">></button><br />
+                                <button type="button" class="btn btn-default" onclick="adicionarItem(transacaoAssociado, transacaoDisponivel)"><</button>
+                            </div>
+                            <div class="col-md-6">
+                                <select multiple class="form-control" id="transacaoAssociado" name="transacaoAssociado">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <p>
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+            <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Transacao", new { sistemaid = Url.RequestContext.RouteData.Values["sistemaid"], moduloid = Url.RequestContext.RouteData.Values["moduloid"] })'" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+        <script type='text/javascript'>
+            function adicionarItem(selectbox1, selectbox2) {
+                var i;
+                for (i = selectbox1.options.length - 1; i >= 0; i--) {
+                    if (selectbox1.options[i].selected) {
+                        selectbox2.add(selectbox1.options[i]);
+                    }
+                }
+                for (i = selectbox1.options.length - 1; i >= 0; i--) {
+                    if (selectbox1.options[i].selected) {
+                        selectbox1.remove(i);
+                    }
+                }
+            }
+            function selectAll(selectbox) {
+                componente = document.getElementById(selectbox);
+                var i;
+                for (i = 0; i < componente.options.length; i++) {
+                    componente.options[i].selected = true;
+                }
+            }
+</script>
+}

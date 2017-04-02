@@ -1,0 +1,41 @@
+﻿@model IEnumerable<w1Consultorio.Models.Periodicidade>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Periodicidade</h3>
+
+<p>
+<input type="button" class="btn btn-primary" value="Nova Periodicidade" onclick="location.href='@Url.Action("Create", "Periodicidade")'" />
+</p>
+<table class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dias)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dias)
+        </td>
+        <td>
+          <div class="btn-group">
+            <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Periodicidade", new { id = item.CodPeriodicidade })'" />
+            <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Periodicidade", new { id = item.CodPeriodicidade })'" />
+          </div>
+        </td>
+    </tr>
+}
+
+</table>

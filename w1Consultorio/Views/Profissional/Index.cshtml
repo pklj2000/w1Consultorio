@@ -1,0 +1,60 @@
+﻿@model IEnumerable<w1Consultorio.Models.Profissional>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    Profissional</h3>
+@if (TempData["mensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["mensagemErro"]
+    </div>
+}
+<br />
+<p>
+    <input type="button" class="btn btn-primary" value="Novo Profissional" 
+        onclick="location.href='@Url.Action("Create", "Profissional")'"/>
+</p>
+<table class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CRM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CRM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AtivoDescricao)
+        </td>
+        <td>
+            <div class="btn-group">
+                <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Profissional", new { id = item.CodProfissional })'" />
+                <input type="button" class="btn btn-default" value="Detalhe" onclick="location.href='@Url.Action("Details", "Profissional", new { id = item.CodProfissional })'" />
+                <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Profissional", new { id = item.CodProfissional })'" />
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

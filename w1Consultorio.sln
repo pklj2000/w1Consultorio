@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w1Consultorio", "w1Consultorio\w1Consultorio.csproj", "{F7172C3F-41A4-4E08-B16A-EF4369FDF1B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{096CC284-AC4D-45F9-AEA7-CE05D07614F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7172C3F-41A4-4E08-B16A-EF4369FDF1B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7172C3F-41A4-4E08-B16A-EF4369FDF1B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7172C3F-41A4-4E08-B16A-EF4369FDF1B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7172C3F-41A4-4E08-B16A-EF4369FDF1B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{096CC284-AC4D-45F9-AEA7-CE05D07614F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{096CC284-AC4D-45F9-AEA7-CE05D07614F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{096CC284-AC4D-45F9-AEA7-CE05D07614F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{096CC284-AC4D-45F9-AEA7-CE05D07614F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

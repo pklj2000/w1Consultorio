@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrapcss") 
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrapjs")
+
+    @RenderSection("Scripts", false);
+</head>
+<body>
+
+    <nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">EMK</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Empresa", "", "Empresa")</li>
+            <li>@Html.ActionLink("Departamento", "", "Departamento")</li>
+            <li>@Html.ActionLink("Cargo", "", "Cargo")</li>
+            <li>@Html.ActionLink("Funcionário", "", "Funcionario")</li>
+            <li class="divider"></li>
+            <li>@Html.ActionLink("Profissional", "", "Profissional")</li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tabelas <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Tipo de exames", "", "TipoExame")</li>
+            <li>@Html.ActionLink("Estado Civil", "", "EstadoCivil")</li>
+            <li>@Html.ActionLink("Riscos", "", "Risco")</li>
+            <li>@Html.ActionLink("Periodicidade", "", "Periodicidade")</li>
+            <li>@Html.ActionLink("Exame", "", "Exame")</li>
+            <li class="divider"></li>
+            <li>@Html.ActionLink("Grupo de perguntas", "", "PerguntaGrupo")</li>
+          </ul>
+        </li>
+      </ul>
+
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Atendimento <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Realizar Atendimento", "", "Atendimento")</li>
+
+                </ul>
+            </li>
+        </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Controle de Acesso <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Usuários", "", "Usuario")</li>
+            <li class="divider"></li>
+            <li>@Html.ActionLink("Sistemas/Módulos", "", "Sistema")</li>
+            <li>@Html.ActionLink("Perfis", "", "Perfil")</li>
+            <li>@Html.ActionLink("Transações", "", "Transacao")</li>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+    @RenderBody()
+    </div>
+
+</body>
+</html>

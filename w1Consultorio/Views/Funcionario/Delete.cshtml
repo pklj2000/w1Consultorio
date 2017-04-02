@@ -1,0 +1,19 @@
+﻿@model w1Consultorio.Models.Funcionario
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <fieldset>
+        <h4>
+            Confirma a exclusão do fucionário: @Html.DisplayFor(model => model.Nome) ?</h4>
+            @Html.HiddenFor(model => model.CodFuncionario)
+    </fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Excluir" class="btn btn-primary" />
+        <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Funcionario", new { codEmp = Model.Cargo.Departamento.CodEmpresa})'" />
+    </p>
+}

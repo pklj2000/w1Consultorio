@@ -1,0 +1,35 @@
+﻿@model IEnumerable<w1Consultorio.Models.EstadoCivil>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Estado Civil</h3>
+
+<p>
+<input type="button" class="btn btn-primary" value="Novo Estado Civil" onclick="location.href='@Url.Action("Create", "EstadoCivil")'" />
+</p>
+<table class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+          <div class="btn-group">
+            <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "EstadoCivil", new { id = item.CodEstCivil })'" />
+            <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "EstadoCivil", new { id = item.CodEstCivil })'" />
+          </div>
+        </td>
+    </tr>
+}
+
+</table>

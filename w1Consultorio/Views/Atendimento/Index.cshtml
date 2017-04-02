@@ -1,0 +1,57 @@
+﻿@model IEnumerable<w1Consultorio.Models.Atendimento>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Atendimentos</h3>
+@if (TempData["mensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["mensagemErro"]
+    </div>
+}
+<br />
+
+<p>
+    <input type="button" class="btn btn-primary" value="Agendar Atendimento"
+           onclick="location.href='@Url.Action("Create", "Atendimento")'"/>
+</p>
+
+<table class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codEmpresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codFuncionario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codTipoExame)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empresa.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Funcionario.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoExame.Descricao)
+        </td>
+        <td>
+            <div class="btn-group">
+                <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Atendimento", new { id = item.codAtendimento })'" />
+                <input type="button" class="btn btn-default" value="Detalhe" onclick="location.href='@Url.Action("Details", "Atendimento", new { id = item.codAtendimento })'" />
+                <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Atendimento", new { id = item.codAtendimento })'" />
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

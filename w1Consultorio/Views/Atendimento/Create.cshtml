@@ -1,0 +1,142 @@
+﻿@model w1Consultorio.Models.Atendimento
+<link href="~/Content/jquery-ui.css" rel="stylesheet">
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h3>Atendimento</h3>
+
+
+@Html.ValidationSummary(true)
+
+@{
+    if (!Html.ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Html.ValidationSummary()
+        </div>
+    }
+
+    if (TempData["mensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["mensagemErro"]
+        </div>
+        }
+    }
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            Empresa:
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("codEmpresa", (SelectList)ViewBag.Empresas, "Selecione a empresa", new { @class = "form-control" } )
+                        @Html.ValidationMessageFor(model => model.codEmpresa)
+                    </div>
+
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.codFuncionario)
+                        </label>
+                    </div>
+
+                    <div class="col-sm-10">
+                        @Html.DropDownList("codFuncionario", (SelectList)ViewBag.codFuncionario, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.codFuncionario)
+                    </div>
+
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.codTipoExame)
+                            </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("CodTipoExame", (SelectList)ViewBag.TiposExame, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.codTipoExame)
+                    </div>
+
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            Data para Atendimento:
+                        </label>
+                    </div>
+                    <div class="col-sm-10 form-group">
+                        @Html.TextBoxFor(model => model.dataAtendimento, new { @class = "form-control", data_provide = "datepicker" } )
+                        @Html.ValidationMessageFor(model => model.dataAtendimento)
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $("#dataAtendimento").datepicker({
+                                    dateFormat: 'dd/mm/yy',
+                                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                                    nextText: 'Próximo',
+                                    prevText: 'Anterior'
+                                });
+                            });
+                        </script>
+                    </div>
+
+                    <p>
+                        <input type="submit" value="Salvar" name="command" class="btn btn-primary" />
+                        <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Atendimento")'" />
+                    </p>
+
+                </div>
+            </div>
+    </fieldset>
+}
+
+
+@section Scripts {
+<script src="/Scripts/moment.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#codEmpresa").change(function () {
+            $("#codFuncionario").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CarregarFuncionariosJSON")', // we are calling json method
+                dataType: 'json',
+                data: { id: $("#codEmpresa").val() },
+               // here we are get value of selected country and passing same value
+                 // as inputto json method GetStates.
+
+                success: function (states) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+
+                    $.each(states, function (i, state) {
+
+                        $("#codFuncionario").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    // here we are adding option for States
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+
+        })
+    });
+</script>
+}

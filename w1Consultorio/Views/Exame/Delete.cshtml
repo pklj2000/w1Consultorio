@@ -1,0 +1,18 @@
+﻿@model w1Consultorio.Models.Exame
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <fieldset>
+        <h4>
+            Confirma a exclusão da empresa: @Html.DisplayFor(model => model.Descricao) ?</h4>
+            @Html.HiddenFor(model => model.CodExame)
+    </fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Excluir" class="btn btn-primary" />
+        <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Exame")'" />
+    </p>
+}

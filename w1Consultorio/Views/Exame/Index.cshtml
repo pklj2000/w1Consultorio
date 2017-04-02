@@ -1,0 +1,48 @@
+﻿@model IEnumerable<w1Consultorio.Models.Exame>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Exames</h3>
+
+<p>
+    <input type="button" class="btn btn-primary" value="Novo Exame" onclick="location.href='@Url.Action("Create", "Exame")'" />
+</p>
+<table class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmiteSolExame)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmiteSolExame)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ativo)
+        </td>
+        <td>
+          <div class="btn-group">
+            <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Exame", new { id = item.CodExame })'" />
+            <input type="button" class="btn btn-default" value="Detalhe" onclick="location.href='@Url.Action("Details", "Exame", new { id = item.CodExame })'" />
+            <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Exame", new { id = item.CodExame })'" />
+          </div>
+        </td>
+    </tr>
+}
+
+</table>

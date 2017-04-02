@@ -1,0 +1,64 @@
+﻿@model IEnumerable<w1Consultorio.Models.Departamento>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Departamentos</h3>
+<p>
+
+@using (Html.BeginForm("Index", "Departamento", FormMethod.Get))
+{
+<div class="panel panel-default">
+  <div class="panel-heading">Filtro</div>
+  <div class="panel-body">
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <label>Empresa: </label>@Html.DropDownList("codEmp", (SelectList)ViewBag.Empresas, new { @class = "form-control"})
+            <br />
+            <input type="submit" value="Procurar    " class="btn btn-primary" />
+        </div>
+    </form>
+  </div>
+</div>
+}
+<p>
+<input type="button" class="btn btn-primary" value="Novo Depto" onclick="location.href='@Url.Action("Create", "Departamento", new { codEmp = ViewBag.codEmp})'" />
+</p>
+<table class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empresa.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Responsavel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empresa.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Responsavel)
+        </td>
+        <td>
+          <div class="btn-group">
+            <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Departamento", new { id = item.CodDepartamento })'" />
+            <input type="button" class="btn btn-default" value="Detalhe" onclick="location.href='@Url.Action("Details", "Departamento", new { id = item.CodDepartamento })'" />
+            <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Departamento", new { id = item.CodDepartamento })'" />
+          </div>
+        </td>
+    </tr>
+}
+
+</table>

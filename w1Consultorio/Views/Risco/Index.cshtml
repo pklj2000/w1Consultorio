@@ -1,0 +1,35 @@
+﻿@model IEnumerable<w1Consultorio.Models.Risco>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Riscos</h3>
+
+<p>
+<input type="button" class="btn btn-primary" value="Novo Risco" onclick="location.href='@Url.Action("Create", "Risco")'" />
+</p>
+<table  class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+          <div class="btn-group">
+            <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Risco", new { id = item.CodRisco })'" />
+            <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Risco", new { id = item.CodRisco })'" />
+          </div>
+        </td>
+    </tr>
+}
+
+</table>

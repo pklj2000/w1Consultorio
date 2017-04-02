@@ -1,0 +1,210 @@
+﻿@model w1Consultorio.Models.Funcionario
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+Funcionário</h3>
+@using (Html.BeginForm()) 
+{
+    if (!Html.ViewData.ModelState.IsValid)
+    {
+    <div class="alert alert-danger" role="alert">
+        @Html.ValidationSummary()
+    </div>
+    }
+
+    if (TempData["mensagemErro"] != null)
+    {
+    <div class="alert alert-danger" role="alert">
+        @TempData["mensagemErro"]
+    </div>
+    }
+    
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        @Html.HiddenFor(model => model.CodFuncionario)
+        @Html.HiddenFor(model => model.Cargo.Departamento.CodEmpresa)
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.CodCargo, "Cargo")
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("CodCargo", (SelectList)ViewBag.Cargo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CodCargo)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.Nome)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.CodEstCivil, "EstadoCivil")
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("CodEstCivil", (SelectList)ViewBag.EstCivilCollection, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CodEstCivil)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.CodSituacao)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="codSituacao" id="codSituacao">
+                            <option value="1" @if (Model.CodSituacao == 1)
+                                              {@Html.Raw("selected=\"selected\"");
+                                              } >Ativo</option>
+                            <option value="2" @if (Model.CodSituacao == 2)
+                                              {@Html.Raw("selected=\"selected\"");
+                                              }>Inativo</option>
+                            <option value="3" @if (Model.CodSituacao == 3)
+                                              { @Html.Raw("selected=\"selected\"");
+                                              }>Demitido</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.CodSituacao)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.CodPeriodicidade, "Periodicidade")
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("CodPeriodicidade", (SelectList)ViewBag.PeriodicidadeCollection, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CodPeriodicidade)
+                     </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.Rg)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Rg, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Rg)
+                     </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.Sexo)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="Sexo" id="Sexo">
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Sexo)
+                     </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.CargoAnterior)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.CargoAnterior, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CargoAnterior)
+                     </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.Natural)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Natural, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Natural)
+                     </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.Nacionalidade)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Nacionalidade, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Nacionalidade)
+                     </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.DataNascimento)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.DataNascimento, "{0:d}", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DataNascimento)
+                     </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.DataAdmissao)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.DataAdmissao, "{0:d}", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DataAdmissao)
+                     </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.DataUltimoExame)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.DataUltimoExame, "{0:d}", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DataUltimoExame)
+                     </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">
+                            @Html.LabelFor(model => model.DataDemissao)
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.DataDemissao, "{0:d}", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DataDemissao)
+                    </div>
+                </div>
+                <p>
+                    <input type="submit" value="Salvar" name="command" class="btn btn-primary" />
+                    <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index")'"/>
+                </p>
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

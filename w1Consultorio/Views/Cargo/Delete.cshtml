@@ -1,0 +1,19 @@
+﻿@model w1Consultorio.Models.Cargo
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <fieldset>
+        <h4>
+            Confirma a exclusão do cargo: @Html.DisplayFor(model => model.Descricao) ?</h4>
+            @Html.HiddenFor(model => model.CodCargo)
+    </fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Excluir" class="btn btn-primary" />
+        <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Cargo", new { codEmp = Model.Departamento.CodEmpresa, codDepto = Model.codDepartamento })'" />
+    </p>
+}

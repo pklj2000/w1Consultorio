@@ -1,0 +1,70 @@
+﻿@model w1Consultorio.Models.Transacao
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+Transação</h3>
+@using (Html.BeginForm()) 
+{
+    if (!Html.ViewData.ModelState.IsValid)
+    {
+    <div class="alert alert-danger" role="alert">
+        @Html.ValidationSummary()
+    </div>
+    }
+
+        <fieldset>
+        @Html.HiddenFor(model => model.CodTransacao)
+        @Html.HiddenFor(model => model.CodModulo)
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.Descricao)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Descricao)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.Janela)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Janela, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Janela)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.Objeto)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Objeto, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Objeto)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label"> 
+                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(model => model.Ativo)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("Ativo", (SelectList)ViewBag.AtivoLista, new { @class = "form-control" })
+                    </div>  
+                </div>
+                </form>
+            </div>
+        </div>
+        <p>
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+            <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Transacao", new { sistemaid = Url.RequestContext.RouteData.Values["sistemaid"], moduloid = Url.RequestContext.RouteData.Values["moduloid"] })'" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

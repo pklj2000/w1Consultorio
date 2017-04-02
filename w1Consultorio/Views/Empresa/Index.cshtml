@@ -1,0 +1,75 @@
+﻿@model IEnumerable<w1Consultorio.Models.Empresa>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Empresas</h3>
+<p>
+
+@using (Html.BeginForm("Index", "Empresa", FormMethod.Get))
+{
+<div class="panel panel-default">
+  <div class="panel-heading">Filtro</div>
+  <div class="panel-body">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-sm-1 control-label">Empresa: </label>
+            <div class="col-sm-4">
+                @Html.TextBox("empresaNome", null, new { @class = "form-control"})
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" value="Procurar    " class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+  </div>
+</div>
+}
+
+<p>
+<input type="button" class="btn btn-primary" value="Nova Empresa" onclick="location.href='@Url.Action("Create", "Empresa")'" />
+</p>
+<table class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ativo)
+        </td>
+        <td>
+          <div class="btn-group">
+            <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Empresa", new { id = item.CodEmpresa })'" />
+            <input type="button" class="btn btn-default" value="Detalhe" onclick="location.href='@Url.Action("Details", "Empresa", new { id = item.CodEmpresa })'" />
+            <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Empresa", new { id = item.CodEmpresa })'" />
+          </div>
+        </td>
+    </tr>
+}
+
+</table>

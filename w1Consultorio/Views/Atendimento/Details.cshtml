@@ -1,0 +1,29 @@
+﻿@model w1Consultorio.Models.Atendimento
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Atendimento</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.codFuncionario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.codFuncionario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.codTipoExame)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.codTipoExame)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.codAtendimento }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

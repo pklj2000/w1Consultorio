@@ -1,0 +1,80 @@
+﻿@model IEnumerable<w1Consultorio.Models.Cargo>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    Cargo</h3>
+@if (TempData["mensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["mensagemErro"]
+    </div>
+}
+<br />
+@using (Html.BeginForm("Index", "Cargo", FormMethod.Get))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Filtro</div>
+        <div class="panel-body">
+            <div class="form-inline" role="form">
+                <div class="form-group">
+                    <label>
+                        Empresa:
+                    </label>@Html.DropDownList("codEmp", (SelectList)ViewBag.Empresas, "Selecione...", new { @class = "form-control", @onchange = "this.form.submit();" })
+                </div>
+                <div class="form-group">
+                    <label>
+                        Depto:
+                    </label>@Html.DropDownList("codDepto", (SelectList)ViewBag.Departamento, new { @class = "form-control" })
+                    <br />
+                </div>
+                <input type="submit" value="Procurar    " class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+<p>
+    <input type="button" class="btn btn-primary" value="Novo Cargo" 
+        onclick="location.href='@Url.Action("Create", "Cargo", new { codEmp = ViewBag.codEmp, codDepto = ViewBag.codDepto})'"  
+        @if (ViewBag.codDepto == 0) { @Html.Raw("disabled = \"disabled\""); }/>
+</p>
+<table class="table table stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departamento.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Periodicidade.Descricao)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Periodicidade.Descricao)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Cargo", new { id = item.CodCargo })'" />
+                    <input type="button" class="btn btn-default" value="Detalhe" onclick="location.href='@Url.Action("Details", "Cargo", new { id = item.CodCargo })'" />
+                    <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Cargo", new { id = item.CodCargo })'" />
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+    

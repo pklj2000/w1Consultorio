@@ -1,0 +1,73 @@
+﻿@model w1Consultorio.Models.Profissional
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+Profissional</h3>
+@using (Html.BeginForm()) 
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.Nome)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label"> @Html.LabelFor(model => model.CRM)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.CRM, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CRM)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.Telefone)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Telefone, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Telefone)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.Ativo)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="Ativo" id="Ativo">
+                            <option value="S" selected="selected">Sim</option>
+                            <option value="N">Não</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Ativo)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.Observacao)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Observacao, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Observacao)
+                    </div>
+                </div>
+                <p>
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                    <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Profissional")'" />
+                </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

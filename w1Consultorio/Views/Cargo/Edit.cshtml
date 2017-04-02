@@ -1,0 +1,151 @@
+﻿@model w1Consultorio.Models.Cargo
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    Exame</h3>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        @Html.HiddenFor(model => model.CodCargo)
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.Descricao)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Descricao)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.codDepartamento, "Departamento")</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("codDepartamento", (SelectList)ViewBag.listaDepartamento, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.codDepartamento)
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 control-label">@Html.LabelFor(model => model.codPeriodicidade, "Periodicidade")
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("codPeriodicidade", (SelectList)ViewBag.listaPeriodicidade, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.codPeriodicidade)
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Exames</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <select multiple class="form-control" id="exameDisponivel" name="exameDisponivel">
+                                    @foreach (var item in ViewBag.Exames)
+                                    {
+                                        if (!item.Assigned)
+                                        {
+                                        <option value=@item.CodExame>@item.Descricao</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-default" onclick="adicionarItem(exameDisponivel, exameAssociado)">
+                                    ></button><br />
+                                <button type="button" class="btn btn-default" onclick="adicionarItem(exameAssociado, exameDisponivel)">
+                                    <</button>
+                            </div>
+                            <div class="col-md-6">
+                                <select multiple class="form-control" id="exameAssociado" name="exameAssociado">
+                                    @foreach (var item in ViewBag.Exames)
+                                    {
+                                        if (item.Assigned)
+                                        {
+                                        <option value=@item.CodExame>@item.Descricao</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Riscos</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <select multiple class="form-control" id="riscoDisponivel" name="riscoDisponivel">
+                                    @foreach (var item in ViewBag.Riscos)
+                                    {
+                                        if (!item.Assigned)
+                                        {
+                                        <option value=@item.CodRisco>@item.Descricao</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-default" onclick="adicionarItem(riscoDisponivel, riscoAssociado)">
+                                    ></button><br />
+                                <button type="button" class="btn btn-default" onclick="adicionarItem(riscoAssociado, riscoDisponivel)">
+                                    <</button>
+                            </div>
+                            <div class="col-md-6">
+                                <select multiple class="form-control" id="riscoAssociado" name="riscoAssociado">
+                                    @foreach (var item in ViewBag.Riscos)
+                                    {
+                                        if (item.Assigned)
+                                        {
+                                        <option value=@item.CodRisco>@item.Descricao</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <input type="submit" value="Salvar" class="btn btn-primary" onclick="selectAll('exameAssociado');selectAll('riscoAssociado');" />
+                    <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Cargo", new { codEmp = Model.Departamento.CodEmpresa, codDepto = Model.codDepartamento })'"/>
+                </p>
+                </form>
+            </div>
+        </div>
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type='text/javascript'>
+        function adicionarItem(selectbox1, selectbox2) {
+            var i;
+            for (i = selectbox1.options.length - 1; i >= 0; i--) {
+                if (selectbox1.options[i].selected) {
+                    selectbox2.add(selectbox1.options[i]);
+                }
+            }
+            for (i = selectbox1.options.length - 1; i >= 0; i--) {
+                if (selectbox1.options[i].selected) {
+                    selectbox1.remove(i);
+                }
+            }
+        }
+        function selectAll(selectbox) {
+            componente = document.getElementById(selectbox);
+            var i;
+            for (i = 0; i < componente.options.length; i++) {
+                componente.options[i].selected = true;
+            }
+        }
+
+    </script>
+}
