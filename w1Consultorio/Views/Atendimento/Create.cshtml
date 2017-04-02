@@ -6,8 +6,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <h3>Atendimento</h3>
 
 
@@ -37,7 +35,7 @@
                 <div class="row form-group">
                     <div class="display-label">
                         <label class="col-sm-2 control-label">
-                            Empresa:
+                            @Html.LabelFor(model => model.Empresa.Nome)
                         </label>
                     </div>
                     <div class="col-sm-10">
@@ -47,7 +45,7 @@
 
                     <div class="display-label">
                         <label class="col-sm-2 control-label">
-                            @Html.LabelFor(model => model.codFuncionario)
+                            @Html.LabelFor(model => model.Funcionario.Nome)
                         </label>
                     </div>
 
@@ -72,7 +70,7 @@
                         </label>
                     </div>
                     <div class="col-sm-10 form-group">
-                        @Html.TextBoxFor(model => model.dataAtendimento, new { @class = "form-control", data_provide = "datepicker" } )
+                        @Html.TextBoxFor(model => model.dataAtendimento,"{0:MM/dd/yyyy}", new { @class = "form-control", data_provide = "datepicker" })
                         @Html.ValidationMessageFor(model => model.dataAtendimento)
                         <script type="text/javascript">
                             $(document).ready(function () {
@@ -99,7 +97,6 @@
             </div>
     </fieldset>
 }
-
 
 @section Scripts {
 <script src="/Scripts/moment.js"></script>
@@ -135,8 +132,6 @@
                     alert('Failed to retrieve states.' + ex);
                 }
             });
-
         })
     });
 </script>
-}

@@ -2,32 +2,32 @@
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
 <fieldset>
-    <legend>Atendimento</legend>
+    <h4>
+        Confirma a exclusão do atendimento do funcionário: @Html.DisplayFor(model => model.Funcionario.Nome) ?
+    </h4>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.codFuncionario)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.codFuncionario)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.codTipoExame)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.codTipoExame)
-    </div>
 </fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
+
+<fieldset>
+    <div class="display-field">
+        Nome do funcionário: @Html.DisplayFor(model => model.Funcionario.Nome)
+    </div>
+    <div class="display-field">
+        Empresa: @Html.DisplayFor(model => model.Empresa.Nome)
+    </div>
+    <div class="display-label">
+        Data: @Html.DisplayFor(model => model.dataAtendimento)
+    </div>
+    <p></p>
+</fieldset>
+@using (Html.BeginForm())
+{
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Excluir" class="btn btn-primary" />
+        <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Atendimento")'" />
     </p>
 }

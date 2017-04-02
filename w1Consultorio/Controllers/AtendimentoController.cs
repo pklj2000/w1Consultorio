@@ -44,9 +44,12 @@ namespace w1Consultorio.Controllers
             if (!string.IsNullOrEmpty(codEmpresa)) _codEmp = Convert.ToInt32(codEmpresa);
 
             CarregarEmpresas(_codEmp);
-            CarregarFuncionarios(_codEmp);
+            CarregarFuncionarios(_codEmp, 0);
             CarregarTipoExame();
-            return View();
+
+            Atendimento atendimento = new Atendimento();
+            atendimento.dataAtendimento = DateTime.Now;
+            return View(atendimento);
         }
 
         //
@@ -66,7 +69,7 @@ namespace w1Consultorio.Controllers
             else
             {
                 CarregarEmpresas(0);
-                CarregarFuncionarios(0);
+                CarregarFuncionarios(0,0);
                 CarregarTipoExame();
             }
             return View(atendimento);
@@ -82,6 +85,12 @@ namespace w1Consultorio.Controllers
             {
                 return HttpNotFound();
             }
+
+
+            CarregarEmpresas(0);
+            CarregarFuncionarios(atendimento.codEmpresa, atendimento.codFuncionario);
+            CarregarTipoExame();
+
             return View(atendimento);
         }
 
@@ -118,7 +127,6 @@ namespace w1Consultorio.Controllers
         // POST: /Atendimento/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Atendimento atendimento = db.Atendimento.Find(id);
@@ -138,9 +146,10 @@ namespace w1Consultorio.Controllers
             ViewBag.Empresas = new SelectList(db.Empresas, "CodEmpresa", "Nome", codEmp);
         }
 
-        private void CarregarFuncionarios(int codEmpresa)
+        private void CarregarFuncionarios(int codEmpresa, int codFuncionarioSel)
         {
-            ViewBag.codFuncionario = new SelectList(db.Funcionarios.Where(x => x.CodEmpresa == codEmpresa), "codFuncionario", "Nome");
+            var result = db.Funcionarios.Where(x => x.CodEmpresa == codEmpresa);
+            ViewBag.Funcionarios = new SelectList(result, "codFuncionario", "Nome", codFuncionarioSel);
         }
 
         private void CarregarTipoExame()

@@ -12,6 +12,7 @@ namespace w1Consultorio.Models
     {
         [Key]
         public Int32 CodEmpresa { get; set; }
+        [Display(Name ="Nome da Empresa:")]
         public string Nome { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
