@@ -2,28 +2,64 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h3>Atendimento</h3>
 
 <fieldset>
-    <legend>Atendimento</legend>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 text-info">@Html.DisplayNameFor(model => model.codAtendimento)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <label class="control-label">@Html.DisplayFor(model => model.codAtendimento)</label>
+                    </div>
+                </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.codFuncionario)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.codFuncionario)
-    </div>
+                <div class="form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 text-info">@Html.DisplayNameFor(model => model.Empresa.Nome)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <label class="control-label">@Html.DisplayFor(model => model.Empresa.Nome)</label>
+                    </div>
+                </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.codTipoExame)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.codTipoExame)
+                <div class="form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 text-info">@Html.DisplayNameFor(model => model.Funcionario.Nome)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <label class="control-label">@Html.DisplayFor(model => model.Funcionario.Nome)</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 text-info">@Html.DisplayNameFor(model => model.TipoExame.Descricao)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <label class="control-label">@Html.DisplayFor(model => model.TipoExame.Descricao)</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="display-label">
+                        <label class="col-sm-2 text-info">@Html.DisplayNameFor(model => model.dataAtendimento)</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <label class="control-label">@Html.DisplayFor(model => model.dataAtendimento)</label>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.codAtendimento }) |
-    @Html.ActionLink("Back to List", "Index")
+    <input type="button" class="btn btn-primary" value="Editar" onclick="location.href='@Url.Action("Edit", "Atendimento", new { id = Model.codAtendimento })'" />
+    <input type="button" class="btn btn-primary" value="Voltar" onclick="location.href='@Url.Action("Index", "Atendimento")'" />
 </p>

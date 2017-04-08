@@ -12,7 +12,7 @@ namespace w1Consultorio.Models
         [Key]
         public Int32 CodFuncionario { get; set; }
         [Required(ErrorMessage = "Informe o nome do funcionário")]
-        [Display(Name = "Nome do Funcionário")]
+        [Display(Name = "Funcionário")]
         public string Nome { get; set; }
         [Required(ErrorMessage = "Informe o cargo do funcionário")]
         public Int32 CodCargo { get; set; }

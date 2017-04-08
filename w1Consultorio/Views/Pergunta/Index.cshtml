@@ -33,9 +33,6 @@ Perguntas: @ViewBag.grupo</h3>
         <th>
             @Html.DisplayNameFor(model => model.PerguntaGrupo.Descricao)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AtivoDescricao)
-        </th>
         <th></th>
     </tr>
 
@@ -48,13 +45,10 @@ Perguntas: @ViewBag.grupo</h3>
             @Html.DisplayFor(modelItem => item.Sequencia)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Ativo)
+            @Html.DisplayFor(modelItem => item.AtivoDescricao)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PerguntaGrupo.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AtivoDescricao)
         </td>
         <td>
             <div class="btn-group">

@@ -1,0 +1,113 @@
+﻿@model w1Consultorio.Models.Prontuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Prontuario</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodTipoExame)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodTipoExame)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Empresa.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Empresa.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Departamento.Descricao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Departamento.Descricao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cargo.Descricao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cargo.Descricao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Funcionario.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Funcionario.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dataExame)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dataExame)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExameClinico)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExameClinico)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExameResultado)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExameResultado)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Profissional.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Profissional.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EstadoCivil)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EstadoCivil)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Aso)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Aso)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AsoObservacao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AsoObservacao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodResultadoClinico)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodResultadoClinico)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodResultadoProntuario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodResultadoProntuario)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CodProntuario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

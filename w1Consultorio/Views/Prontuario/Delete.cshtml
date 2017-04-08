@@ -1,0 +1,117 @@
+﻿@model w1Consultorio.Models.Prontuario
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Prontuario</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodTipoExame)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodTipoExame)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Empresa.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Empresa.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Departamento.Descricao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Departamento.Descricao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cargo.Descricao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cargo.Descricao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Funcionario.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Funcionario.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dataExame)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dataExame)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExameClinico)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExameClinico)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExameResultado)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExameResultado)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Profissional.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Profissional.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EstadoCivil)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EstadoCivil)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Aso)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Aso)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AsoObservacao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AsoObservacao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodResultadoClinico)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodResultadoClinico)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodResultadoProntuario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodResultadoProntuario)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

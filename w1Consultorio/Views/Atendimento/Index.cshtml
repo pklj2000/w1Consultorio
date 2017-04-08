@@ -29,7 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.codTipoExame)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.dataAtendimento)
+        </th>
         <th></th>
     </tr>
 
@@ -45,10 +47,14 @@
             @Html.DisplayFor(modelItem => item.TipoExame.Descricao)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.dataAtendimento)
+        </td>
+        <td>
             <div class="btn-group">
                 <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Atendimento", new { id = item.codAtendimento })'" />
                 <input type="button" class="btn btn-default" value="Detalhe" onclick="location.href='@Url.Action("Details", "Atendimento", new { id = item.codAtendimento })'" />
                 <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Atendimento", new { id = item.codAtendimento })'" />
+                <input type="button" class="btn btn-primary" value="Prontuário" onclick="location.href='@Url.Action("Create", "Prontuario", new { codAtendimento = item.codAtendimento })'" />
             </div>
         </td>
     </tr>

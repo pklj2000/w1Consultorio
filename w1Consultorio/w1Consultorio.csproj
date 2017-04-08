@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,23 +40,28 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -113,6 +120,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
@@ -142,6 +150,7 @@
     <Compile Include="Controllers\PerguntaGrupoController.cs" />
     <Compile Include="Controllers\PeriodicidadeController.cs" />
     <Compile Include="Controllers\ProfissionalController.cs" />
+    <Compile Include="Controllers\ProntuarioController.cs" />
     <Compile Include="Controllers\RiscoController.cs" />
     <Compile Include="Controllers\SistemaController.cs" />
     <Compile Include="Controllers\TipoExameController.cs" />
@@ -150,6 +159,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappers\AutoMapperConfig.cs" />
+    <Compile Include="Mappers\DomainToViewModelMappingProfile.cs" />
+    <Compile Include="Mappers\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Migrations\201703272123120_all.cs" />
     <Compile Include="Migrations\201703272123120_all.Designer.cs">
       <DependentUpon>201703272123120_all.cs</DependentUpon>
@@ -170,6 +182,42 @@
     <Compile Include="Migrations\201703311315286_atendimento3.Designer.cs">
       <DependentUpon>201703311315286_atendimento3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704041516350_prontuario1.cs" />
+    <Compile Include="Migrations\201704041516350_prontuario1.Designer.cs">
+      <DependentUpon>201704041516350_prontuario1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704051019004_prontuario.cs" />
+    <Compile Include="Migrations\201704051019004_prontuario.Designer.cs">
+      <DependentUpon>201704051019004_prontuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704051049261_prontuario11.cs" />
+    <Compile Include="Migrations\201704051049261_prontuario11.Designer.cs">
+      <DependentUpon>201704051049261_prontuario11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704051307267_prontuario4.cs" />
+    <Compile Include="Migrations\201704051307267_prontuario4.Designer.cs">
+      <DependentUpon>201704051307267_prontuario4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704051735556_prontuario5.cs" />
+    <Compile Include="Migrations\201704051735556_prontuario5.Designer.cs">
+      <DependentUpon>201704051735556_prontuario5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704051813078_prontuario6.cs" />
+    <Compile Include="Migrations\201704051813078_prontuario6.Designer.cs">
+      <DependentUpon>201704051813078_prontuario6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704061026520_perguntaviewmodeç.cs" />
+    <Compile Include="Migrations\201704061026520_perguntaviewmodeç.Designer.cs">
+      <DependentUpon>201704061026520_perguntaviewmodeç.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704072101065_pertunta1.cs" />
+    <Compile Include="Migrations\201704072101065_pertunta1.Designer.cs">
+      <DependentUpon>201704072101065_pertunta1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704072105457_perguntas2.cs" />
+    <Compile Include="Migrations\201704072105457_perguntas2.Designer.cs">
+      <DependentUpon>201704072105457_perguntas2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Atendimento.cs" />
     <Compile Include="Models\Cargo.cs" />
@@ -185,15 +233,23 @@
     <Compile Include="Models\PerguntaGrupo.cs" />
     <Compile Include="Models\Periodicidade.cs" />
     <Compile Include="Models\Profissional.cs" />
+    <Compile Include="Models\Prontuario.cs" />
+    <Compile Include="Models\Resposta.cs" />
+    <Compile Include="Models\ResultadoClinico.cs" />
+    <Compile Include="Models\ResultadoProntuario.cs" />
     <Compile Include="Models\Risco.cs" />
     <Compile Include="Models\Sistema.cs" />
     <Compile Include="Models\TipoExame.cs" />
+    <Compile Include="Models\TipoPergunta.cs" />
     <Compile Include="Models\Transacao.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\ViewModel\AssignedExameData.cs" />
     <Compile Include="Models\ViewModel\AssignedPerfilData.cs" />
     <Compile Include="Models\ViewModel\AssignedRiscoData.cs" />
     <Compile Include="Models\ViewModel\AssignedTransacaoData.cs" />
+    <Compile Include="Models\ViewModel\GrupoViewModel.cs" />
+    <Compile Include="Models\ViewModel\PerguntaRespostaViewModel.cs" />
+    <Compile Include="Models\ViewModel\ProntuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\ViewModel\AssignedPeriodicidadeData.cs" />
   </ItemGroup>
@@ -520,6 +576,33 @@
     <EmbeddedResource Include="Migrations\201703311315286_atendimento3.resx">
       <DependentUpon>201703311315286_atendimento3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704041516350_prontuario1.resx">
+      <DependentUpon>201704041516350_prontuario1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704051019004_prontuario.resx">
+      <DependentUpon>201704051019004_prontuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704051049261_prontuario11.resx">
+      <DependentUpon>201704051049261_prontuario11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704051307267_prontuario4.resx">
+      <DependentUpon>201704051307267_prontuario4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704051735556_prontuario5.resx">
+      <DependentUpon>201704051735556_prontuario5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704051813078_prontuario6.resx">
+      <DependentUpon>201704051813078_prontuario6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704061026520_perguntaviewmodeç.resx">
+      <DependentUpon>201704061026520_perguntaviewmodeç.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704072101065_pertunta1.resx">
+      <DependentUpon>201704072101065_pertunta1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704072105457_perguntas2.resx">
+      <DependentUpon>201704072105457_perguntas2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Atendimento\Index.cshtml" />
@@ -535,6 +618,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Atendimento\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prontuario\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prontuario\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prontuario\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prontuario\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prontuario\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prontuario\_Perguntas.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -30,18 +30,21 @@ namespace w1Consultorio.Models
         [Display(Name = "Respostas possíveis")]
         public string RespostaItem { get; set; }
 
+        public virtual PerguntaGrupo PerguntaGrupo { get; set; }
+
+        [NotMapped]
+        public Dictionary<int, string> TipoResposta { get; set; }
+
         [NotMapped]
         public string AtivoDescricao
         {
             get
             {
                 string _ativo = "Não";
-                if (Ativo == "S")
+                if (Ativo == "1")
                     _ativo = "Sim";
                 return _ativo;
             }
         }
-
-        public virtual PerguntaGrupo PerguntaGrupo { get; set; }
     }
 }

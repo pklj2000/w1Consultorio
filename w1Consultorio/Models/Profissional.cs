@@ -13,6 +13,7 @@ namespace w1Consultorio.Models
         [Key]
         public Int32 CodProfissional { get; set; }
         [Required(ErrorMessage = "Informe o nome do profissional")]
+        [Display(Name ="Nome do Profissional")]
         public string Nome { get; set; }
         public string CRM { get; set; }
         public string Telefone { get; set; }

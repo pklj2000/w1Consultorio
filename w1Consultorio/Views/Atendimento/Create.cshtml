@@ -42,7 +42,8 @@
                         @Html.DropDownList("codEmpresa", (SelectList)ViewBag.Empresas, "Selecione a empresa", new { @class = "form-control" } )
                         @Html.ValidationMessageFor(model => model.codEmpresa)
                     </div>
-
+                </div>
+                <div class="row form-group">
                     <div class="display-label">
                         <label class="col-sm-2 control-label">
                             @Html.LabelFor(model => model.Funcionario.Nome)
@@ -50,27 +51,29 @@
                     </div>
 
                     <div class="col-sm-10">
-                        @Html.DropDownList("codFuncionario", (SelectList)ViewBag.codFuncionario, new { @class = "form-control" })
+                        @Html.DropDownList("codFuncionario", (SelectList)ViewBag.Funcionarios, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.codFuncionario)
                     </div>
-
+                </div>
+                <div class="row form-group">
                     <div class="display-label">
                         <label class="col-sm-2 control-label">
                             @Html.LabelFor(model => model.codTipoExame)
-                            </label>
+                        </label>
                     </div>
                     <div class="col-sm-10">
                         @Html.DropDownList("CodTipoExame", (SelectList)ViewBag.TiposExame, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.codTipoExame)
                     </div>
-
+                </div>
+                <div class="row form-group">
                     <div class="display-label">
                         <label class="col-sm-2 control-label">
                             Data para Atendimento:
                         </label>
                     </div>
                     <div class="col-sm-10 form-group">
-                        @Html.TextBoxFor(model => model.dataAtendimento,"{0:MM/dd/yyyy}", new { @class = "form-control", data_provide = "datepicker" })
+                        @Html.TextBoxFor(model => model.dataAtendimento, "{0:MM/dd/yyyy}", new { @class = "form-control", data_provide = "datepicker" })
                         @Html.ValidationMessageFor(model => model.dataAtendimento)
                         <script type="text/javascript">
                             $(document).ready(function () {

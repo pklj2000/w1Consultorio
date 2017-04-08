@@ -37,6 +37,8 @@ namespace w1Consultorio
         public DbSet<Transacao> Transacao { get; set; }
         public DbSet<Perfil> Perfil { get; set; }
         public DbSet<Atendimento> Atendimento { get; set; }
+        public DbSet<Prontuario> Prontuario { get; set; }
+        public DbSet<Resposta> Resposta { get; set; }
  
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -97,6 +99,49 @@ namespace w1Consultorio
                 .WithMany()
                 .HasForeignKey(c => c.CodModulo)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Prontuario>()
+                .HasRequired(f => f.Empresa)
+                .WithMany()
+                .HasForeignKey(c => c.CodEmpresa)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Prontuario>()
+                .HasRequired(f => f.Departamento)
+                .WithMany()
+                .HasForeignKey(c => c.CodDepartamento)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Prontuario>()
+                .HasRequired(f => f.Cargo)
+                .WithMany()
+                .HasForeignKey(c => c.CodCargo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Prontuario>()
+                .HasRequired(f => f.Funcionario)
+                .WithMany()
+                .HasForeignKey(c => c.CodFuncionario)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Prontuario>()
+                .HasRequired(f => f.Profissional)
+                .WithMany()
+                .HasForeignKey(c => c.codProfissional)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Resposta>()
+                .HasRequired(f => f.Prontuario)
+                .WithMany()
+                .HasForeignKey(c => c.CodProntuario)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Resposta>()
+                .HasRequired(f => f.Pergunta)
+                .WithMany()
+                .HasForeignKey(c => c.CodPergunta)
+                .WillCascadeOnDelete(false);
+
         }
     }
 }

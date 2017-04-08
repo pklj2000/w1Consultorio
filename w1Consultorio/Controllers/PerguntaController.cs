@@ -138,13 +138,9 @@ namespace w1Consultorio.Controllers
 
         private void CarregarTipoResposta()
         {
-            var tipoRespostas = new SelectList(new[]
-                                          {
-                                              new {ID="1",Descricao="Texto Livre"},
-                                              new{ID="2",Descricao="Numérico"},
-                                              new{ID="3",Descricao="Lista"},
-                                          },
-                            "ID", "Descricao", 1);
+            TipoPergunta tipoPergunta = new TipoPergunta();
+            var tipoRespostas = new SelectList(tipoPergunta.TiposPergunta, "key", "value", 1);
+
             ViewBag.TipoResposta = tipoRespostas;
         }
 

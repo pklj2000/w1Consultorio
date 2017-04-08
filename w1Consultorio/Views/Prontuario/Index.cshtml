@@ -1,0 +1,70 @@
+﻿@model IEnumerable<w1Consultorio.Models.Prontuario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Prontuários</h3>
+@if (TempData["mensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["mensagemErro"]
+    </div>
+}
+<br />
+
+<table class= "table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Empresa.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Funcionario.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoExame.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataExame)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Profissional.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aso)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empresa.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Funcionario.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoExame.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataExame)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profissional.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aso)
+        </td>
+        <td>
+            <div class="btn-group">
+                <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Prontuario", new {grupoid = Url.RequestContext.RouteData.Values["grupoid"], id = item.CodProntuario })'" />
+                <input type="button" class="btn btn-default" value="Detalhe" onclick="location.href='@Url.Action("Details", "Prontuario", new { grupoid = Url.RequestContext.RouteData.Values["grupoid"], id = item.CodProntuario })'" />
+                <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Prontuario", new { grupoid = Url.RequestContext.RouteData.Values["grupoid"], id = item.CodProntuario })'" />
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

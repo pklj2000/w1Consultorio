@@ -1,0 +1,164 @@
+﻿@model w1Consultorio.Models.ViewModel.ProntuarioViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Prontuário</h3>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.CodEmpresa);
+    @Html.HiddenFor(model => Model.CodDepartamento);
+    @Html.HiddenFor(model => model.CodCargo);
+    @Html.HiddenFor(model => model.CodFuncionario);
+    @Html.HiddenFor(model => model.CodTipoExame);
+
+    if (!Html.ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Html.ValidationSummary()
+        </div>
+    }
+
+    if (TempData["mensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["mensagemErro"]
+        </div>
+    }
+
+    <fieldset>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Cabeçalho</div>
+
+            <div class="panel-body">
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label">
+                        @Html.LabelFor(model => model.Empresa.Nome)
+                    </label>
+                    <div class="col-sm-10">
+                        @Html.DisplayFor(model => model.Empresa.Nome)
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label">
+                        @Html.LabelFor(model => model.Departamento.Descricao)
+                    </label>
+                    <div class="col-sm-10">
+                        @Html.DisplayFor(model => model.Departamento.Descricao)
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label">
+                        @Html.LabelFor(model => model.Cargo.Descricao)
+                    </label>
+                    <div class="col-sm-10">
+                        @Html.DisplayFor(model => model.Cargo.Descricao)
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label">
+                        @Html.LabelFor(model => model.Funcionario.Nome)
+                    </label>
+                    <div class="col-sm-10">
+                        @Html.DisplayFor(model => model.Funcionario.Nome)
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label">
+                        @Html.LabelFor(model => model.TipoExame.Descricao)
+                    </label>
+                    <div class="col-sm-10">
+                        @Html.DisplayFor(model => model.TipoExame.Descricao)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        @for (int j = 0; j <= Model.PerguntasRespostas.Count() - 1; j++)
+        {
+            <div class="panel panel-primary">
+                <div class="panel-heading">@Html.DisplayFor(modelItem=> modelItem.PerguntasRespostas[j].GrupoDescricao)</div>
+                <div class="panel-body">
+                    <table>
+                        @for (int i = 0; i <= Model.PerguntasRespostas[j].Perguntas.Count - 1; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => modelItem.PerguntasRespostas[j].Perguntas[i].PerguntaDescricao)
+                                </td>
+                                <td>
+                                    @Html.HiddenFor(modelItem => modelItem.PerguntasRespostas[j].GrupoSequencia)
+                                    @Html.HiddenFor(modelItem => modelItem.PerguntasRespostas[j].Perguntas[i].CodPergunta)
+                                    @Html.TextBoxFor(modelItem => modelItem.PerguntasRespostas[j].Perguntas[i].RespostaValor, new { @class = "form-control" })
+                                </td>
+                            </tr>
+
+                        }
+                    </table>
+                </div>
+            </div>
+        }
+        
+        
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Resultado</div>
+
+                            <div class="panel-body">
+                                <div class="row form-group">
+                                    <div class="col-sm-2 control-label">
+                                        @Html.LabelFor(model => model.ExameClinico)
+                                    </div>
+                                    <div class="col-sm-10">
+                                        @Html.DropDownList("CodResultadoClinico", (SelectList)ViewBag.codResultadoClinico, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CodResultadoClinico)
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-sm-2 control-label">
+                                        @Html.LabelFor(model => model.ExameResultado)
+                                    </div>
+                                    <div class="col-sm-10">
+                                        @Html.DropDownList("CodResultadoProntuario", (SelectList)ViewBag.ResultadoProntuario, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ResultadoProntuario)
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-sm-2 control-label">
+                                        @Html.LabelFor(model => model.codProfissional, "Profissional")
+                                    </div>
+                                    <div class="col-sm-10">
+                                        @Html.DropDownList("codProfissional", (SelectList)ViewBag.codProfissional, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.codProfissional)
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-sm-2 control-label">
+                                        @Html.LabelFor(model => model.AsoObservacao)
+                                    </div>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(model => model.AsoObservacao, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AsoObservacao)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            <input type="submit" value="Salvar" name="command" class="btn btn-primary" />
+                            <input type="button" class="btn btn-primary" value="Cancelar" onclick="location.href='@Url.Action("Index", "Atendimento")'" />
+                        </p>
+</fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
