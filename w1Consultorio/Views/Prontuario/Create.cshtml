@@ -82,32 +82,11 @@
             </div>
         </div>
 
-        
-        @for (int j = 0; j <= Model.PerguntasRespostas.Count() - 1; j++)
-        {
-            <div class="panel panel-primary">
-                <div class="panel-heading">@Html.DisplayFor(modelItem=> modelItem.PerguntasRespostas[j].GrupoDescricao)</div>
-                <div class="panel-body">
-                    <table>
-                        @for (int i = 0; i <= Model.PerguntasRespostas[j].Perguntas.Count - 1; i++)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => modelItem.PerguntasRespostas[j].Perguntas[i].PerguntaDescricao)
-                                </td>
-                                <td>
-                                    @Html.HiddenFor(modelItem => modelItem.PerguntasRespostas[j].GrupoSequencia)
-                                    @Html.HiddenFor(modelItem => modelItem.PerguntasRespostas[j].Perguntas[i].CodPergunta)
-                                    @Html.TextBoxFor(modelItem => modelItem.PerguntasRespostas[j].Perguntas[i].RespostaValor, new { @class = "form-control" })
-                                </td>
-                            </tr>
+        <p>
+            @Html.Partial("_Perguntas", Model.PerguntasRespostas);
+        </p>
 
-                        }
-                    </table>
-                </div>
-            </div>
-        }
-        
+       
         
 
                         <div class="panel panel-primary">

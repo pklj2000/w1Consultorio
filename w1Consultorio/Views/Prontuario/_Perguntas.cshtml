@@ -3,8 +3,7 @@
     Layout = null;
 }
 
-
-@for (int j = 0; j <= Model.Count()-1; j++)
+@for (int j = 0; j <= Model.Count() - 1; j++)
 {
     <div class="panel panel-primary">
         <div class="panel-heading">@Html.DisplayFor(modelItem => modelItem[j].GrupoDescricao)</div>
@@ -14,9 +13,11 @@
                 {
                     <tr>
                         <td>
-                            @Model[j].Perguntas[i].PerguntaDescricao
+                            @Html.DisplayFor(modelItem => modelItem[j].Perguntas[i].PerguntaDescricao)
                         </td>
                         <td>
+                            @Html.HiddenFor(modelItem => modelItem[j].GrupoSequencia)
+                            @Html.HiddenFor(modelItem => modelItem[j].Perguntas[i].CodPergunta)
                             @Html.TextBoxFor(modelItem => modelItem[j].Perguntas[i].RespostaValor, new { @class = "form-control" })
                         </td>
                     </tr>
